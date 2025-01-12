@@ -3,10 +3,11 @@ def sort_on(myDict):
 
 
 def main():
+    bookPath = "books/frankenstein.txt"
     letterDict = {}
     listOfDicts = []
     wordCount = 0
-    with open("books/frankenstein.txt") as f:
+    with open(bookPath) as f:
         file_contents = f.read()
 
     for words in file_contents.split():
@@ -24,16 +25,16 @@ def main():
         countDicts['count'] = letterDict[letters]
         listOfDicts.append(countDicts) 
 
+    listOfDicts.sort(reverse=True, key=sort_on) 
 
+    print(f"--- Begin report of {bookPath} ---")
+    print(f"{wordCount} words found in the document\n")
 
-    listOfDicts.sort(reverse=True, key=sort_on)    
-    print(listOfDicts)
-
-
-
-    print(f"There are {wordCount} words in this book.")
 
     for dicts in listOfDicts:
+        if dicts['letter'].isalpha():
+            print(f"The '{dicts['letter']}' was found {dicts['count']} times")
 
+    print("--- End report ---")
 
 main()
