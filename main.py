@@ -1,5 +1,10 @@
+def sort_on(myDict):
+    return myDict['count']
+
+
 def main():
     letterDict = {}
+    listOfDicts = []
     wordCount = 0
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
@@ -12,16 +17,23 @@ def main():
             letterDict[character] = 1
         else:
             letterDict[character] += 1
-        
-
     
+    for letters in letterDict:
+        countDicts = {}
+        countDicts['letter'] = letters 
+        countDicts['count'] = letterDict[letters]
+        listOfDicts.append(countDicts) 
 
 
 
+    listOfDicts.sort(reverse=True, key=sort_on)    
+    print(listOfDicts)
 
-    printf("There are {wordCount} words in this book.")
 
 
+    print(f"There are {wordCount} words in this book.")
+
+    for dicts in listOfDicts:
 
 
 main()
